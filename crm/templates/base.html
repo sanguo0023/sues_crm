@@ -70,15 +70,6 @@
           <li><a href="#">One more separated link</a></li>
         </ul>
       </li>
-    </ul>
-    <form class="navbar-form navbar-left" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="搜索">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/admin/">管理</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">社交网络分析<b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -89,6 +80,16 @@
           <li><a href="#">待添加</a></li>
         </ul>
       </li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="搜索">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/admin/">管理</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#LoginModal">登录/注册</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
@@ -112,8 +113,9 @@
     {% block footer %}
     {% endblock %}
 
+
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="LoginModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -123,12 +125,12 @@
 			<div class="modal-body">
 				<form role="form">
 					<div class="form-group">
-						<label for="goods">产品</label>
-						<input type="email" class="form-control" id="goods" placeholder="产品名">
+						<label for="account">账户</label>
+						<input type="email" class="form-control" id="account" placeholder="account" />
 					</div>
 					<div class="form-group">
-						<label for="number">数量</label>
-						<input type="password" class="form-control" id="number" placeholder="数量">
+						<label for="number">密码</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="密码" />
 					</div>
 					<div class="checkbox">
 						<label>
@@ -140,13 +142,12 @@
 																								
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button type="button" class="btn btn-primary">提交</button>
+				<button type="button" class="btn btn-default">登录</button>
+				<button type="button" class="btn btn-primary">注册</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 </body>
 </html>
