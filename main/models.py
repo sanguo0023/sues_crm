@@ -29,9 +29,6 @@ class Stock(models.Model):
 	extra = models.PositiveIntegerField()
 	goods = models.ForeignKey(Goods)
 
-	def __unicode__(self):
-		return self.name
-
 	class Meta:
 		ordering = ['extra']
 
@@ -41,16 +38,10 @@ class Outer(models.Model):
 	goods = models.ForeignKey(Goods)
 	operator = models.ForeignKey(Operator)
 
-	def __unicode__(self):
-		return self.name
-
 class Inner(models.Model):
 	number = models.PositiveIntegerField()
 	goods = models.ForeignKey(Goods)
 	operator = models.ForeignKey(Operator)
-
-	def __unicode__(self):
-		return self.name
 
 class Customer(models.Model):
 	name = models.CharField(max_length=30)
@@ -72,4 +63,3 @@ class Order(models.Model):
 
 	def __unicode__(self):
 		return self.name
-

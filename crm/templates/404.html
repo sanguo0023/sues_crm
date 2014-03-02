@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}公益数据项目{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="jumbotron">
+		<h2>很抱歉，您要找的页面找不到了</h2>
+		<h2><small>嘟嘟熊正在闭关自省中……<small></h2>
+		<button id="click_sign" class="btn btn-success"><span class="glyphicon glyphicon-hand-right"> </span>点击敲它脑袋</button>
+		<hr />
+		<footer>
+			<small>&copy; dodo bear workstation 2014</small>
+		</footer>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+	<script type="text/javascript">
+	count = 0;
+	$(document).ready( function () {
+		$("#click_sign").click( function() {
+			$(this).html("<span class=\"glyphicon glyphicon-tint\"> </span>不要敲了，呜呜呜");
+			for (i = 0; i < count; i ++)
+				$(this).append("呜");
+			count ++;
+			$(this).append("……");
+		});
+	});
+	</script>
+{% endblock%}

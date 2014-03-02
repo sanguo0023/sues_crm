@@ -8,19 +8,145 @@
 	<meta name="author" content="Yufei-Li">
     <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
     <title>{% block title %}{% endblock %}</title>
+	<style>
 		{% block style %} {% endblock %}
+		html,
+		body {
+			height: 100%;
+		}
+
+		#wrap {
+			min-height: 100%;
+			height: auto;
+			margin: 0 auto -60px;
+			padding: 0 0 60px;
+		}
+
+		#footer {
+			height: 60px;
+			background-color: #f5f5f5;
+		}
+
+		.container {
+			width: auto;
+			max-width: 680px;
+			padding: 0 15px;
+		}
+
+		.container .text-muted {
+			margin: 20px 0;
+		}
+
+	</style>
 </head>
 <body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/index/">SUES CRM 快速部署平台</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li><a href="/show/">产品展示</a></li>
+      <li><a href="/order/" data-toggle="modal" data-target="#myModal">提交订单</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">文档<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+          <li class="divider"></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="搜索">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/admin/">管理</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">社交网络分析<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">新浪微博</a></li>
+          <li><a href="#">腾讯微博</a></li>
+          <li><a href="#">微信公众平台</a></li>
+          <li class="divider"></li>
+          <li><a href="#">待添加</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div id="wrap">
+
     {% block content %}{% endblock %}
+
+</div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted">Place sticky footer content here.</p>
+		</div>
+	</div>
 
 	<!--Javascript代码引入-->
 	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
     {% block footer %}
-    <hr>
-    <p>Thanks for visiting my site.</p>
     {% endblock %}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">订单信息</h4>
+			</div>
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<label for="goods">产品</label>
+						<input type="email" class="form-control" id="goods" placeholder="产品名">
+					</div>
+					<div class="form-group">
+						<label for="number">数量</label>
+						<input type="password" class="form-control" id="number" placeholder="数量">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> 是否收取邮件/短信
+						</label>
+					</div>
+				</form>
+
+																								
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary">提交</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 </body>
 </html>
