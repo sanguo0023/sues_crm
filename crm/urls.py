@@ -12,5 +12,8 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/', views.index),
-		url(r'^image/(?P<path>.*)', views.show_image),
+    url(r'^show/', views.show),
+    url(r'^sns/', views.sns),
+	url(r'^image/(?P<path>.*)', views.show_image),
+	#url(r'^static/admin/css/base.css$', views.load_css),
 )
