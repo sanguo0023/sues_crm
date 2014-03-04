@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} 5分钟指南 {% endblock %}
+
+	{% block content %}
+
+	<p id="text"></p>
+
+	<a href="https://api.weibo.com/oauth2/authorize?client_id=1342064535&scope=all&redirect_uri=http://127.0.0.1:8000/sns/" class="btn btn-large btn-success">授权微博</a>
+
+	<script type="text/javascript">
+		$(document).ready( function() {
+			$.post("https://api.weibo.com/oauth2/access_token",
+				{
+					client_id: '1342064535',
+					redirect_uri: 'http://127.0.0.1:8000/index', 
+					client_secret: '9cc2ae929687f61cb3455c70093ce225', 
+					grant_type: 'authorization_code', 
+					code: $.query.get('code'),
+					}, function(data) {
+						$("#text").text(data);
+					});
+		});
+	</script>
+
+	{% endblock %}

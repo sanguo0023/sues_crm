@@ -2,17 +2,29 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from main.models import *
+from main.forms import *
 
 # Create your views here.
 def index(request):
 	return render_to_response('index.html', {})
 
+def sns(request):
+	return render_to_response('sns.html', {})
+
 def show(request):
 	goods = Goods.objects.all()
-	return render_to_response('show.html', {'goods': goods})
+	if request.method == 'POST':
+		form = OrderForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/index/')
+	else:
+		form = OrderForm()
+	return render_to_response('show.html', {'goods': goods, 'form': form})
 
-def order(request):
-	return render_to_response('order.html', {})
+def load_css(request):
+	str = 'http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css';
+	return HttpResponse(str)
 
 def show_image(request, path):
 	image_data = open("static/images/" + path, "rb").read()

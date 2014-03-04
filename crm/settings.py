@@ -50,7 +50,8 @@ INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
+	#'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -93,8 +94,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 DIR_ROOT=os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
-#STATIC_URL = os.path.join(DIR_ROOT, 'static')
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/';
+STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\','/')
+ADMIN_MEDIA_PREFIX = STATIC_URL + "admin"
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
