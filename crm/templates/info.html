@@ -2,21 +2,74 @@
 
 {% block title %} SUES : CRM || 产品展示 {% endblock %}
 
+{% block style %}
+		.carousel {
+			height: 300px;
+		}
+		.carousel-caption {
+			z-index: 10;
+		}
+		.carousel .item {
+			height: 300px;
+			background-color: #777;
+		}
+		.carousel-inner > .item > img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			min-width: 100%;
+			height: 300px;
+		}
+
+{% endblock %}
+
 	{% block content %}
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" src="/image/bg1.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>5分钟快速搭建企业网站</h1>
+              <p class="lead">传统CRM + 现代互联网 = 新的机遇</p>
+              <p><a class="btn btn-lg btn-primary" href="/show/" role="button">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" src="/image/bg2.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>独创的與情分析，让你快人一步</h1>
+              <p class="lead">连接新浪微博，腾讯微博，微信公众平台等社交网络，建立自己的公共媒体平台</p>
+              <p><a class="btn btn-lg btn-primary" href="/sns/" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" src="/image/bg3.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>库存管理，客户关系管理</h1>
+              <p class="lead">轻量级，简单化</p>
+              <p><a class="btn btn-lg btn-primary" href="/admin/" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
 
-<div class="index-content">
-<div class="row">
-
-	<div class="large-12 columns">
-		<div class="panel">
-			<h3 id="mainhead">那一抹美到极致的绿</h3>
-			<p>&nbsp&nbsp&nbsp&nbsp那一抹绿，是早春的小草，带给了我们生命的气息；那一抹绿，是夏日的垂柳，带给了我们生命的柔细；那一抹绿，是初秋时的杨树，带给了我们生命的坚挺；那一抹绿，是严冬时的苍松，带给了我们生命的不屈……就是这一抹绿，装点着我们的家园，让我们的生命更多姿多彩、富有意义。</p>
-            		<img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" src="/image/bg4.jpg" alt="Second slide">
-        	</div>
+	<div class="jumbotron">
+			<h3>那一抹美到极致的绿</h3>
+			<p> {{ info.description }} </p>
 	</div>
-
-
-</div>
-</div>
 
 	{% endblock %}

@@ -77,7 +77,7 @@ def show_image(request, path):
 	image_data = open("static/images/" + path, "rb").read()
 	return HttpResponse(image_data, mimetype="image/png")
 
-def crm(request):
+def info(request):
 	json_text = open("static/json/info.json", "r").read()
 	info = loads(json_text)
 	return render_to_response('info.html', {'info': info})
