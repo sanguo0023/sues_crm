@@ -1,6 +1,7 @@
 #coding=utf-8
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from json import loads
 from main.models import *
 from main.forms import *
 from json import loads
@@ -75,3 +76,9 @@ def load_css(request):
 def show_image(request, path):
 	image_data = open("static/images/" + path, "rb").read()
 	return HttpResponse(image_data, mimetype="image/png")
+
+def crm(request):
+	json_text = open("static/json/info.json", "r").read()
+	info = loads(json_text)
+	return render_to_response('info.html', {'info': info})
+
