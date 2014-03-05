@@ -48,8 +48,9 @@ class Inner(models.Model):
 
 class Customer(models.Model):
 	name = models.CharField(max_length=30, verbose_name="客户姓名")
+	#tel = models.PositiveIntegerField(blank=True, verbose_name="电话")
 	tele_phone = models.PositiveIntegerField(blank=True, verbose_name="固定电话")
-	mobile_phone = models.PositiveIntegerField(blank=True, verbose_name="移动点换")
+	mobile_phone = models.PositiveIntegerField(blank=True, verbose_name="移动电话")
 	email = models.EmailField(blank=True, verbose_name="电子邮件")
 	address = models.CharField(max_length=60, verbose_name="通讯地址")
 

@@ -1,3 +1,4 @@
+#coding=utf-8
 from main.models import *
 from django.contrib import admin
 
@@ -31,7 +32,7 @@ class CustomerAdmin(admin.ModelAdmin):
 	list_display = ('name', 'address', )
 	search_fields = ('name', 'address', )
 	list_filter = ('address', )
-	fields = ('name', 'tel', 'email', 'address', )
+	fields = ('name', 'tele_phone', 'mobile_phone', 'email', 'address', )
 
 class OrderAdmin(admin.ModelAdmin):
 	list_display = ('customer', 'goods', 'number', )

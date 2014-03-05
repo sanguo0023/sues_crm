@@ -25,7 +25,8 @@ CREATE TABLE `main_outer` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `number` integer UNSIGNED NOT NULL,
     `goods_id` integer NOT NULL,
-    `operator_id` integer NOT NULL
+    `operator_id` integer NOT NULL,
+    `time` datetime NOT NULL
 )
 ;
 ALTER TABLE `main_outer` ADD CONSTRAINT `goods_id_refs_id_576520c2` FOREIGN KEY (`goods_id`) REFERENCES `main_goods` (`id`);
@@ -34,7 +35,8 @@ CREATE TABLE `main_inner` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `number` integer UNSIGNED NOT NULL,
     `goods_id` integer NOT NULL,
-    `operator_id` integer NOT NULL
+    `operator_id` integer NOT NULL,
+    `time` datetime NOT NULL
 )
 ;
 ALTER TABLE `main_inner` ADD CONSTRAINT `goods_id_refs_id_9dd10ff7` FOREIGN KEY (`goods_id`) REFERENCES `main_goods` (`id`);
@@ -42,7 +44,8 @@ ALTER TABLE `main_inner` ADD CONSTRAINT `operator_id_refs_id_ed6a4ddc` FOREIGN K
 CREATE TABLE `main_customer` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `name` varchar(30) NOT NULL,
-    `tel` integer UNSIGNED NOT NULL,
+    `tele_phone` integer UNSIGNED NOT NULL,
+    `mobile_phone` integer UNSIGNED NOT NULL,
     `email` varchar(75) NOT NULL,
     `address` varchar(60) NOT NULL
 )
@@ -51,7 +54,8 @@ CREATE TABLE `main_order` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `customer_id` integer NOT NULL,
     `goods_id` integer NOT NULL,
-    `number` integer UNSIGNED NOT NULL
+    `number` integer UNSIGNED NOT NULL,
+    `time` datetime NOT NULL
 )
 ;
 ALTER TABLE `main_order` ADD CONSTRAINT `goods_id_refs_id_d7446ad9` FOREIGN KEY (`goods_id`) REFERENCES `main_goods` (`id`);

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} 通讯录 {% endblock %}
+
+	{% block content %}
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h1>客户信息表</h1>
+		</div>
+		<div class="panel-body">
+			<a href="/csv/" class="btn btn-default">下载数据文件</a>
+			<a href="/admin/main/customer/add/" class="btn btn-primary">添加客户</a>
+		</div>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<th>客户姓名</th>
+				<th>固定电话</th>
+				<th>移动电话</th>
+				<th>电子邮件</th>
+				<th>通讯地址</th>
+			</thead>
+
+			<tbody id="data">
+			
+			{% for item in customer %}
+				<tr>
+					<td> {{ item.name }} </td>
+					<td> {{ item.tele_phone }} </td>
+					<td> {{ item.mobile_phone }} </td>
+					<td> {{ item.email }} </td>
+					<td> {{ item.address }} </td>
+				</tr>
+			{% endfor %}
+
+			</tbody>
+
+		</table>
+	</div>
+
+</div>
+
+	{% endblock %}

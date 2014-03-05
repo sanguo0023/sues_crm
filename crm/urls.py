@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^index/', views.index),
     url(r'^show/', views.show),
     url(r'^sns/', views.sns),
+    url(r'^crm/', views.crm),
+    url(r'^csv/', views.to_csv),
 	url(r'^image/(?P<path>.*)', views.show_image),
 	#url(r'^static/admin/css/base.css$', views.load_css),
 )
