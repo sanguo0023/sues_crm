@@ -2,6 +2,12 @@
 
 {% block title %} SUES : CRM || 产品展示 {% endblock %}
 
+	{% block auth %}
+		{% if user %}
+		<li><a href="#">{{ user.customer_name }}</a></li>
+		{% endif %}
+	{% endblock %}
+
 	{% block content %}
 
 	<div class="row">

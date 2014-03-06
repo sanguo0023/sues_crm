@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block title %} SUES : CRM || 文档 {% endblock %}
+
+{% block style %}
+#doc {
+	background:	rgba(205,179,128,0.5);
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	box-shadow: 10px 10px 10px #888888;
+}
+{% endblock %}
+
+{% block content %}
+
+<div id="doc" class="container">
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#user" data-toggle="tab">用户</a></li>
+		<li><a href="#business" data-toggle="tab">企业</a></li>
+		<li class="dropdown">
+		<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">开发手册<b class="caret"></b></a>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+			<li><a href="#development" tabindex="-1" data-toggle="tab">开发人员文档</a></li>
+			<li><a href="#project" tabindex="-1" data-toggle="tab">项目相关</a></li>
+		</ul>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="user">
+			<h1 id="用户说明文档">用户说明文档</h1>
+
+			<h2 id="企业用户">企业用户</h2>
+
+			<h3 id="对外公开信息平台">对外公开信息平台</h3>
+
+			<p>有需要展示的产品，或是公司的基本信息，我们开发了一个简单的静态CMS进行管理，如果需要图片展示，需要安装PIL及其依赖库，这里时间实在太仓促，就没有进行接下来的开发。</p><div class="se-section-delimiter"></div>
+
+			<h3 id="客户关系管理">客户关系管理</h3>
+
+			<p>能够读取已注册或管理员已导入的用户数据，形成一张Excel表格展示出来并导出表格文件</p>
+
+			<h3 id="管理员入口">管理员入口</h3>
+
+			<p>企业管理人员可以以管理员身份登入，建立职工用户组并且分配权限，以便工作人员进行信息录入操作</p><div class="se-section-delimiter"></div>
+
+			<h2 id="个人用户">个人用户</h2>
+
+			<h3 id="初次登录">初次登录</h3>
+
+			<p>注册新的用户信息，填写：</p>
+
+			<ul>
+				<li>姓名</li>
+				<li>固定电话（选填）</li>
+				<li>移动电话（选填）</li>
+				<li>邮件地址（选填）</li>
+				<li>帐号</li>
+				<li>密码</li>
+			</ul>
+
+			<p>帐号作为用户的唯一标识，请妥善保管</p><div class="se-section-delimiter"></div>
+
+			<h3 id="产品展示">产品展示</h3>
+
+			<p>登录成功后，页面跳转到产品展示区 <br>
+			在这里可以提交订单，所有的订单将保存在后台数据库</p><div class="se-section-delimiter"></div>
+
+			<h3 id="公司简介">公司简介</h3>
+
+			<p>在这里展示公司的简介、宣传幻灯片和想法 <br>
+			让我们共同创造一个有气质的企业和产品信息平台</p>
+		</div>
+		<div class="tab-pane fade" id="business">
+			<h1 id="企业部署指南">企业部署指南</h1>
+
+			<h2 id="环境配置">环境配置</h2>
+
+			<p>开发环境为<code>Ubuntu 13.10</code>，开发组建议您使用相近似的服务器环境配置，其中各项参数如下：</p>
+
+			<ol>
+				<li>必要环境 <br>
+				<ul><li><code>Linux</code>服务器一台</li>
+					<li><code>Python2.7</code>以上版本（建议Python3）</li>
+					<li><code>Django1.5</code>以上（建议1.6.2）</li>
+					<li><code>源代码</code>一份（获取最新版请移步<a href="https://github.com/sanguo0023/sues_crm">Github</a>）</li>
+					<li><code>Apache</code>或其他服务器环境（相关知识请参考各自的配置手册）</li></ul></li>
+				<li>可选环境 <br>
+				<ul><li><code>PIL</code>（开启图片存储，详情请见开发者文档）</li></ul></li>
+			</ol>
+
+			<p>下面以Ubuntu发行版为例讲解平台部署步骤，其他Linux发行版请使用各自的包管理软件</p><div class="se-section-delimiter"></div>
+
+			<hr />
+
+			<h2 id="安装python">安装Python</h2>
+
+			<p>通常情况下，Ubuntu默认安装Python开发环境，如果没有安装，请使用：</p>
+
+			<pre><code>
+			sudo apt-get install python
+			</code></pre>
+
+			<p>执行安装</p>
+
+			<hr />
+
+			<h2 id="配置数据库和服务器环境">配置数据库和服务器环境</h2>
+
+			<p>Ubuntu可以使用集成的LAMP开发环境，使用如下命令获取最新版的<code>Apache</code>和<code>Mysql</code>：</p>
+
+			<pre><code>
+			sudo apt-get install lamp-server
+			sudo apt-get install python-mysqldb —— 数据库连接器
+			</code></pre>
+
+			<p>同时我们也推荐<code>MariaDB</code>和<code>PostgreSQL</code>这两种优秀的开源产品，以及MongoDB（暂未支持）作为未来的发展方向，我们并不提供服务器端详细配置方法，详情请参考各自的服务器手册</p>
+
+			<p>数据库配置文件存在于源码包的crm/settings.py文件中，请将DATABASE字典修改为您的环境配置参数</p><div class="se-section-delimiter"></div>
+
+			<hr />
+
+			<h2 id="安装django">安装Django</h2>
+
+			<p>请点击<a href="https://www.djangoproject.com/download/1.6.2/tarball/">这里</a>下载<code>Django1.6.2</code>安装包，执行解压和安装操作</p>
+
+			<pre><code>
+			tar xzvf Django-1.6.2.tar.gz
+			cd Django-1.6.2
+			sudo python setup.py install
+			</code></pre><div class="se-section-delimiter"></div>
+
+			<hr />
+
+			<h2 id="有经验的企业管理员">有经验的企业管理员</h2>
+
+			<p>如果您是有技术经验的企业管理员，可以使用Python的专用包管理器<code>pip</code>来管理您的<code>SUES——CRM</code>，使用</p>
+
+			<pre><code>
+			pip install django
+			</code></pre>
+
+			<p>安装<code>Django</code>并用</p>
+
+			<pre><code>
+			which django-admin.py
+			</code></pre>
+
+			<p>测试安装的有效性，在Github上拉取最新的源码包</p>
+
+			<pre><code>
+			git clone git@github.com:sanguo0023/sues_crm.git
+			</code></pre>
+
+			<hr />
+
+			<h2 id="同步数据模型">同步数据模型</h2>
+
+			<p>数据库转储文件在源码包的根目录下，名为<code>crm.sql</code>，通常情况下您不需要对此进行变动，如果您希望对数据库模型进行改动，请执行如下命令手动导出：</p>
+
+			<pre><code>
+			python manage.py sqlall &gt; crm.sql
+			</code></pre>
+		</div>
+		<div class="tab-pane fade" id="development">
+			<h1 id="开发人员文档">开发人员文档</h1><div class="se-section-delimiter"></div>
+
+			<h2 id="目录结构">目录结构</h2>
+
+			<pre><code>
+			├── crm
+			│&nbsp;&nbsp; ├── __init__.py
+			│&nbsp;&nbsp; ├── settings.py
+			│&nbsp;&nbsp; ├── templates
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── 404.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── base.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── crm.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── doc.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── index.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── info.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── login.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── register.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── show.html
+			│&nbsp;&nbsp; │&nbsp;&nbsp; └── sns.html
+			│&nbsp;&nbsp; ├── urls.py
+			│&nbsp;&nbsp; └── wsgi.py
+			├── crm.sql
+			├── main
+			│&nbsp;&nbsp; ├── admin.py
+			│&nbsp;&nbsp; ├── forms.py
+			│&nbsp;&nbsp; ├── __init__.py
+			│&nbsp;&nbsp; ├── models.py
+			│&nbsp;&nbsp; ├── tests.py
+			│&nbsp;&nbsp; └── views.py
+			├── manage.py
+			├── requirements.txt
+			├── static
+			│&nbsp;&nbsp; ├── images
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── bg1.jpg
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── bg2.jpg
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── bg3.jpg
+			│&nbsp;&nbsp; │&nbsp;&nbsp; ├── bg4.jpg
+			│&nbsp;&nbsp; │&nbsp;&nbsp; └── bg5.jpg
+			│&nbsp;&nbsp; └── json
+			│&nbsp;&nbsp;     └── info.json
+			└── 商品信息0.csv
+			</code></pre><div class="se-section-delimiter"></div>
+
+			<h2 id="功能模块">功能模块</h2>
+
+			<p>目前的功能模块有：</p>
+
+			<ul>
+				<li>产品展示</li>
+				<li>公司简介</li>
+				<li>通讯录</li>
+				<li>数据录入管理</li>
+			</ul>
+
+			<p>如果没有接触过Django框架，着手修改会比较困难，开发组建议从一下几个角度进行开发：</p>
+
+			<ul>
+				<li>数据模型重定义</li>
+				<li>表单模型和用户提交业务</li>
+				<li>对现有的数据模型补充式开发</li>
+			</ul>
+
+			<h3 id="数据模型重定义">数据模型重定义</h3>
+
+			<p>现有的数据模型定义是</p>
+
+			<pre><code>
+			1. 物品信息表（名称，价格，描述，图片[未开启，需PIL支持]）
+			2. 库存表（数量，关联1）
+			3. 客户表（姓名，固定电话，移动电话，E-Mail，地址，帐号，密码）
+			4. 操作员表（已废弃）
+			5. 出库记录（数量，时间，关联1，关联4）
+			6. 入库记录（数量，时间，关联1，关联4）
+			7. 订单表（数量，关联3，关联1）
+			</code></pre>
+
+			<p>可以看出，时间仓促，且又是学习新的框架，对框架自有的用户验证体系不熟悉，数据模型表4成为了冗余的定义，课业较忙，一直到6月之前都暂时没有时间进行继续开发，只能先暂且搁置，请使用此项目的开发者自行重定义数据模型。</p><div class="se-section-delimiter"></div>
+
+			<h3 id="表单模型和用户提交业务">表单模型和用户提交业务</h3>
+
+			<p>这个部分本来是有时间做的，但是开发对微博进行情感挖掘的部分消耗了接近三天的时间，算法和语料都有了，但是api的数据一直拉不下来，只好放弃，导致这个系列的功能也没有时间开发了，希望开发者能够注意这个部分的缺憾。</p><div class="se-section-delimiter"></div>
+
+			<h3 id="对现有的数据模型补充式开发">对现有的数据模型补充式开发</h3>
+
+			<p>可以看到，这个数据模型中，有一部分表没有被使用，是设计的时候预留的ERP库存管理模块的表，需要注意的是，这个表的开发需要自建的数据模型与Django子框架的auth模型之间的用户体系对接，即同时关联表1和表3。</p><div class="se-section-delimiter"></div>
+			<h2 id="获取开发支持">获取开发支持</h2>
+
+			<pre><code>
+			请发邮件至sues_crm@163.com
+			</code></pre>
+
+			<p>希望您开发愉快！</p>
+		</div>
+		<div class="tab-pane fade" id="project">
+			<h1 id="关于项目">关于项目</h1>
+
+			<h2 id="项目历程">项目历程</h2>
+
+			<p>项目从上周六<code>3月1日</code>开始开发，对于没有学习过Python Web编程的我们，从头学习Web Django框架是很吃力的，直到星期日的晚上才敢于定义数据模型，并且在星期一对于Django的HTML渲染技术稍有了解，写出了第一个展示页面。</p>
+
+			<p>之后我们希望将以前讨论过的微博情感挖掘程序开发出来，花了许多时间从网络上下载和筛选语料，星期二到星期三一直试图从新浪的api上拉取数据，经过一系列的调试，终于成功拉取了<code>access_token</code>，但是一直不能获得合法的回调数据。</p>
+
+			<p>在星期四的压迫感下，我们不得不放弃拉取数据和深入学习Django的尝试，使用标准的非框架式Python语法，开发了用户验证模块，以便用户主动提交相关信息，同时按照老师的要求疯狂赶工文档，并对<a href="https://github.com/sanguo0023/sues_crm/">Github</a>上的同步代码做最后一次清理。</p>
+
+			<p>在这个项目中，我们感觉到无论开发什么类型的程序，扎实的计算机科学基础才是根本，速成的方法只能用于临时的项目，并且对于计算机科学的核心本领并无太大的提升，我们热爱计算机，更不希望心爱的计算机事业成为赶工赶进度的项目科学。</p>
+
+			<h2 id="项目相关">项目相关</h2>
+
+			<blockquote>
+				  <p>前端：  <a href="http://www.bootcss.com/">Bootstrap</a> <br>
+				      后端：  <a href="http://www.python.org/">Python</a> + <a href="https://www.djangoproject.com/">Django</a> <br>
+					      项目协作和代码托管： <a href="https://github.com">Github</a></p>
+					  </blockquote>
+
+					  <h2 id="项目组成员">项目组成员</h2>
+
+					  <ul>
+						  <li>李宇飞</li>
+						  <li>陈龙</li>
+					  </ul>
+
+					  <p>上海工程技术大学 计算机系</p>
+
+					  <p>小组名为<code>FDRush</code>, 即我们名字末位字的英文缩写，取一积极向上的意象，即<code>Rush</code></p>
+		</div>
+		<p class="text-center"><small>© Corpyright 2014 上海工程技术大学 FDRush开发小组</small></p>
+	</div>
+</div>
+{% endblock %}

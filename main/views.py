@@ -1,6 +1,8 @@
 #coding=utf-8
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.contrib.sessions.models import Session
 from json import loads
 from main.models import *
 from main.forms import *
@@ -10,35 +12,6 @@ import urllib, urllib2, csv
 # Create your views here.
 def index(request):
 	return render_to_response('index.html', {})
-
-def sns(request):
-	if 'code' in request.GET:
-		#if 'access_token' not in request.session:
-		params = urllib.urlencode({	'client_id': '1342064535', 
-				'redirect_uri': 'http://127.0.0.1:8000/sns/',
-				'client_secret': '9cc2ae929687f61cb3455c70093ce225',
-				'grant_type': 'authorization_code', 
-				'code': request.GET['code'], })
-
-		data = urllib.urlopen('https://api.weibo.com/oauth2/access_token', params).read()
-		token = loads(data)
-		request.session['access_token'] = token['access_token']
-
-		params = urllib.urlencode({	'uid': '5057273373', 'access_token': request.session['access_token'] })
-		req = urllib2.Request('https://api.weibo.com/2/statuses/user_timeline.json', params)
-		req.add_header('Content-Type', "application/x-www-form-urlencoded")
-		data = urllib2.urlopen(req).read()
-		titles = loads(data)
-
-		params = urllib.urlencode({	'uid': '5057273373', 'access_token': request.session['access_token'] })
-		req = urllib2.Request('https://api.weibo.com/2/comments/to_me.json', params)
-		req.add_header('Content-Type', "application/x-www-form-urlencoded")
-		data = urllib2.urlopen(req).read()
-		comments = loads(data)
-
-		return render_to_response('sns.html', {'titles': titles, 'comments': comments, 'token': token})
-	else:
-		return render_to_response('sns.html', {'data': ''})
 
 def to_csv(request):
 	response = HttpResponse(mimetype='text/csv')
@@ -64,14 +37,14 @@ def show(request):
 		form = OrderForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect('/index/')
+			return HttpResponseRedirect('/show/')
 	else:
-		form = OrderForm()
-	return render_to_response('show.html', {'goods': goods, 'form': form})
-
-def load_css(request):
-	str = 'http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css';
-	return HttpResponse(str)
+		if not request.session.get('customer_id'):
+			return HttpResponseRedirect('/login/')
+		else:
+			form = OrderForm()
+			user = request.session
+			return render_to_response('show.html', {'goods': goods, 'form': form, 'user': user})
 
 def show_image(request, path):
 	image_data = open("static/images/" + path, "rb").read()
@@ -82,3 +55,32 @@ def info(request):
 	info = loads(json_text)
 	return render_to_response('info.html', {'info': info})
 
+def doc(request):
+	return render_to_response('doc.html', {})
+
+def login(request):
+	if request.method == 'POST':
+		data = request.POST
+		try:
+			user = Customer.objects.get(account=data['account'], password=data['password'])
+		except Customer.DoesNotExist:
+			return render_to_response('login.html', {'error': '用户名或密码错误'})
+		else:
+			request.session['customer_id'] = user.id
+			request.session['customer_name'] = user.name
+			return HttpResponseRedirect('/show/')
+	else:
+		return render_to_response('login.html', {})
+
+def register(request):
+	if request.method == 'POST':
+		form = RegisterForm(request.POST)
+		if form.is_valid():
+			data = form.cleaned_data
+			form.save()
+			request.session['customer_id'] = Customer.objects.get(account=data['account']).id
+			request.session['customer_name'] = data['name']
+			return HttpResponseRedirect('/show/')
+		else:
+			return render_to_response('register.html', {'error': '您输入的表单不符合规范，请重新输入', 'form': form})
+	return render_to_response('register.html')
