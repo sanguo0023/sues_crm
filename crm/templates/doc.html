@@ -30,6 +30,8 @@
 		<div class="tab-pane fade in active" id="user">
 			<h1 id="用户说明文档">用户说明文档</h1>
 
+			<hr />
+
 			<h2 id="企业用户">企业用户</h2>
 
 			<h3 id="对外公开信息平台">对外公开信息平台</h3>
@@ -43,6 +45,8 @@
 			<h3 id="管理员入口">管理员入口</h3>
 
 			<p>企业管理人员可以以管理员身份登入，建立职工用户组并且分配权限，以便工作人员进行信息录入操作</p><div class="se-section-delimiter"></div>
+
+			<hr />
 
 			<h2 id="个人用户">个人用户</h2>
 
@@ -70,9 +74,14 @@
 
 			<p>在这里展示公司的简介、宣传幻灯片和想法 <br>
 			让我们共同创造一个有气质的企业和产品信息平台</p>
+
+			<hr />
+
 		</div>
 		<div class="tab-pane fade" id="business">
 			<h1 id="企业部署指南">企业部署指南</h1>
+
+			<hr />
 
 			<h2 id="环境配置">环境配置</h2>
 
@@ -159,11 +168,13 @@
 			<p>数据库转储文件在源码包的根目录下，名为<code>crm.sql</code>，通常情况下您不需要对此进行变动，如果您希望对数据库模型进行改动，请执行如下命令手动导出：</p>
 
 			<pre><code>
-			python manage.py sqlall &gt; crm.sql
+			python manage.py sqlall main &gt; crm.sql
 			</code></pre>
 		</div>
 		<div class="tab-pane fade" id="development">
 			<h1 id="开发人员文档">开发人员文档</h1><div class="se-section-delimiter"></div>
+
+			<hr />
 
 			<h2 id="目录结构">目录结构</h2>
 
@@ -205,6 +216,8 @@
 			│&nbsp;&nbsp;     └── info.json
 			└── 商品信息0.csv
 			</code></pre><div class="se-section-delimiter"></div>
+
+			<hr />
 
 			<h2 id="功能模块">功能模块</h2>
 
@@ -248,6 +261,9 @@
 			<h3 id="对现有的数据模型补充式开发">对现有的数据模型补充式开发</h3>
 
 			<p>可以看到，这个数据模型中，有一部分表没有被使用，是设计的时候预留的ERP库存管理模块的表，需要注意的是，这个表的开发需要自建的数据模型与Django子框架的auth模型之间的用户体系对接，即同时关联表1和表3。</p><div class="se-section-delimiter"></div>
+
+			<hr />
+
 			<h2 id="获取开发支持">获取开发支持</h2>
 
 			<pre><code>
@@ -259,6 +275,8 @@
 		<div class="tab-pane fade" id="project">
 			<h1 id="关于项目">关于项目</h1>
 
+			<hr />
+
 			<h2 id="项目历程">项目历程</h2>
 
 			<p>项目从上周六<code>3月1日</code>开始开发，对于没有学习过Python Web编程的我们，从头学习Web Django框架是很吃力的，直到星期日的晚上才敢于定义数据模型，并且在星期一对于Django的HTML渲染技术稍有了解，写出了第一个展示页面。</p>
@@ -269,6 +287,8 @@
 
 			<p>在这个项目中，我们感觉到无论开发什么类型的程序，扎实的计算机科学基础才是根本，速成的方法只能用于临时的项目，并且对于计算机科学的核心本领并无太大的提升，我们热爱计算机，更不希望心爱的计算机事业成为赶工赶进度的项目科学。</p>
 
+			<hr />
+
 			<h2 id="项目相关">项目相关</h2>
 
 			<blockquote>
@@ -276,6 +296,8 @@
 				      后端：  <a href="http://www.python.org/">Python</a> + <a href="https://www.djangoproject.com/">Django</a> <br>
 					      项目协作和代码托管： <a href="https://github.com">Github</a></p>
 					  </blockquote>
+
+			<hr />
 
 					  <h2 id="项目组成员">项目组成员</h2>
 

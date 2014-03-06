@@ -47,7 +47,9 @@ CREATE TABLE `main_customer` (
     `tele_phone` integer UNSIGNED NOT NULL,
     `mobile_phone` integer UNSIGNED NOT NULL,
     `email` varchar(75) NOT NULL,
-    `address` varchar(60) NOT NULL
+    `address` varchar(60) NOT NULL,
+    `account` varchar(30) NOT NULL UNIQUE,
+    `password` varchar(30) NOT NULL
 )
 ;
 CREATE TABLE `main_order` (
@@ -58,8 +60,8 @@ CREATE TABLE `main_order` (
     `time` datetime NOT NULL
 )
 ;
-ALTER TABLE `main_order` ADD CONSTRAINT `goods_id_refs_id_d7446ad9` FOREIGN KEY (`goods_id`) REFERENCES `main_goods` (`id`);
 ALTER TABLE `main_order` ADD CONSTRAINT `customer_id_refs_id_2036e762` FOREIGN KEY (`customer_id`) REFERENCES `main_customer` (`id`);
+ALTER TABLE `main_order` ADD CONSTRAINT `goods_id_refs_id_d7446ad9` FOREIGN KEY (`goods_id`) REFERENCES `main_goods` (`id`);
 CREATE INDEX `main_stock_2b897762` ON `main_stock` (`goods_id`);
 CREATE INDEX `main_outer_2b897762` ON `main_outer` (`goods_id`);
 CREATE INDEX `main_outer_5e7ba3ec` ON `main_outer` (`operator_id`);
